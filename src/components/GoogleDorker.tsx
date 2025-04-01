@@ -157,42 +157,47 @@ export function GoogleDorker() {
             
             <div className="space-y-4">
               {operatorQueries.map((query, index) => (
-                <div key={query.id} className="flex gap-2 items-center">
-                  <Select 
-                    value={query.operator} 
-                    onValueChange={(value) => updateOperatorQuery(query.id, 'operator', value)}
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select operator" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {dorkOperators.map((operator) => (
-                        <SelectItem key={operator.value} value={operator.value}>
-                          <div className="flex flex-col">
-                            <span>{operator.label}</span>
-                            <span className="text-xs text-muted-foreground">{operator.description}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  
-                  <Input
-                    placeholder="Enter value..."
-                    value={query.value}
-                    onChange={(e) => updateOperatorQuery(query.id, 'value', e.target.value)}
-                    className="flex-1"
-                  />
-                  
-                  {operatorQueries.length > 1 && (
-                    <Button 
-                      variant="ghost" 
-                      size="icon"
-                      onClick={() => removeOperatorQuery(query.id)}
+                <div key={query.id} className="flex flex-col sm:flex-row gap-2">
+                  <div className="flex-shrink-0 w-full sm:w-auto">
+                    <Select 
+                      value={query.operator} 
+                      onValueChange={(value) => updateOperatorQuery(query.id, 'operator', value)}
                     >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  )}
+                      <SelectTrigger className="w-full sm:w-[180px]">
+                        <SelectValue placeholder="Select operator" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dorkOperators.map((operator) => (
+                          <SelectItem key={operator.value} value={operator.value}>
+                            <div className="flex flex-col">
+                              <span>{operator.label}</span>
+                              <span className="text-xs text-muted-foreground">{operator.description}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="flex-1 flex gap-2">
+                    <Input
+                      placeholder="Enter value..."
+                      value={query.value}
+                      onChange={(e) => updateOperatorQuery(query.id, 'value', e.target.value)}
+                      className="flex-1"
+                    />
+                    
+                    {operatorQueries.length > 1 && (
+                      <Button 
+                        variant="ghost" 
+                        size="icon"
+                        onClick={() => removeOperatorQuery(query.id)}
+                        className="flex-shrink-0"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
                 </div>
               ))}
               
