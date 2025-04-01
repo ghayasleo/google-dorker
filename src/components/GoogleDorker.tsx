@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Copy, Search, ExternalLink } from "lucide-react";
+import { Copy, Search, ExternalLink, Plus, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { 
@@ -26,7 +25,6 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 
-// Define the Google Dork operators
 const dorkOperators = [
   { value: "site", label: "site:", description: "Search within a specific website" },
   { value: "intitle", label: "intitle:", description: "Pages with a specific word in the title" },
@@ -44,7 +42,6 @@ const dorkOperators = [
   { value: "allintitle", label: "allintitle:", description: "Titles containing all specified terms" },
 ];
 
-// Define predefined templates
 const predefinedTemplates = [
   { 
     name: "Exposed Documents", 
@@ -73,33 +70,75 @@ const predefinedTemplates = [
   },
 ];
 
+interface OperatorQuery {
+  id: string;
+  operator: string;
+  value: string;
+}
+
 export function GoogleDorker() {
-  const [selectedOperator, setSelectedOperator] = useState("");
   const [keywords, setKeywords] = useState("");
   const [generatedQuery, setGeneratedQuery] = useState("");
   const [activeTab, setActiveTab] = useState("custom");
+  
+  const [operatorQueries, setOperatorQueries] = useState<OperatorQuery[]>([
+    { id: crypto.randomUUID(), operator: "", value: "" }
+  ]);
+
+  const addOperatorQuery = () => {
+    setOperatorQueries([
+      ...operatorQueries, 
+      { id: crypto.randomUUID(), operator: "", value: "" }
+    ]);
+  };
+
+  const removeOperatorQuery = (id: string) => {
+    if (operatorQueries.length > 1) {
+      setOperatorQueries(operatorQueries.filter(query => query.id !== id));
+    } else {
+      toast({
+        title: "Cannot remove",
+        description: "You need at least one operator field",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const updateOperatorQuery = (id: string, field: 'operator' | 'value', newValue: string) => {
+    setOperatorQueries(
+      operatorQueries.map(query => 
+        query.id === id ? { ...query, [field]: newValue } : query
+      )
+    );
+  };
 
   const handleGenerateQuery = () => {
     let query = "";
     
     if (activeTab === "custom") {
-      if (!keywords) {
+      const hasValidOperator = operatorQueries.some(
+        query => query.operator && query.value
+      );
+
+      if (!hasValidOperator && !keywords) {
         toast({
           title: "Input required",
-          description: "Please enter keywords or a search term",
+          description: "Please enter keywords or at least one complete operator query",
           variant: "destructive",
         });
         return;
       }
       
-      if (selectedOperator) {
-        const operator = dorkOperators.find(op => op.value === selectedOperator);
-        query = `${operator?.label || ""} ${keywords}`;
-      } else {
-        query = keywords;
-      }
+      const operatorParts = operatorQueries
+        .filter(query => query.operator && query.value)
+        .map(query => {
+          const operator = dorkOperators.find(op => op.value === query.operator);
+          return `${operator?.label || ""}${query.value}`;
+        });
+      
+      const queryParts = keywords ? [keywords, ...operatorParts] : operatorParts;
+      query = queryParts.join(" ");
     } else {
-      // Template tab is active
       const template = predefinedTemplates.find(t => t.name === activeTab);
       if (template) {
         query = template.query;
@@ -175,29 +214,62 @@ export function GoogleDorker() {
             <TabsContent value="custom" className="space-y-4">
               <div className="space-y-2">
                 <Input
-                  placeholder="Enter keywords or search terms..."
+                  placeholder="Enter additional keywords (optional)..."
                   value={keywords}
                   onChange={(e) => setKeywords(e.target.value)}
                   className="w-full"
                 />
               </div>
               
-              <div className="space-y-2">
-                <Select value={selectedOperator} onValueChange={setSelectedOperator}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a Google Dork operator" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {dorkOperators.map((operator) => (
-                      <SelectItem key={operator.value} value={operator.value}>
-                        <div className="flex flex-col">
-                          <span>{operator.label}</span>
-                          <span className="text-xs text-muted-foreground">{operator.description}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="space-y-4">
+                {operatorQueries.map((query, index) => (
+                  <div key={query.id} className="flex gap-2 items-center">
+                    <Select 
+                      value={query.operator} 
+                      onValueChange={(value) => updateOperatorQuery(query.id, 'operator', value)}
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Select operator" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dorkOperators.map((operator) => (
+                          <SelectItem key={operator.value} value={operator.value}>
+                            <div className="flex flex-col">
+                              <span>{operator.label}</span>
+                              <span className="text-xs text-muted-foreground">{operator.description}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    <Input
+                      placeholder="Enter value..."
+                      value={query.value}
+                      onChange={(e) => updateOperatorQuery(query.id, 'value', e.target.value)}
+                      className="flex-1"
+                    />
+                    
+                    {operatorQueries.length > 1 && (
+                      <Button 
+                        variant="ghost" 
+                        size="icon"
+                        onClick={() => removeOperatorQuery(query.id)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                
+                <Button 
+                  variant="outline" 
+                  onClick={addOperatorQuery} 
+                  className="w-full"
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Operator
+                </Button>
               </div>
             </TabsContent>
             
