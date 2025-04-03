@@ -22,20 +22,35 @@ import {
 } from "@/components/ui/card";
 
 const dorkOperators = [
+  { value: "empty", label: '""', description: "Empty string search" },
+  { value: "or", label: "OR", description: "Search for either term" },
+  { value: "and", label: "AND", description: "Search for both terms" },
+  { value: "exclude", label: "-", description: "Exclude a term from results" },
+  { value: "wildcard", label: "*", description: "Wildcard character for any text" },
   { value: "site", label: "site:", description: "Search within a specific website" },
-  { value: "intitle", label: "intitle:", description: "Pages with a specific word in the title" },
   { value: "inurl", label: "inurl:", description: "Pages with a specific word in the URL" },
-  { value: "filetype", label: "filetype:", description: "Files of a specific type" },
-  { value: "intext", label: "intext:", description: "Pages containing specific text" },
-  { value: "cache", label: "cache:", description: "View Google's cached version of a specific page" },
-  { value: "link", label: "link:", description: "Pages that link to a specific URL" },
-  { value: "related", label: "related:", description: "Pages that are related to a specific URL" },
-  { value: "after", label: "after:", description: "Pages indexed after a specific date" },
-  { value: "before", label: "before:", description: "Pages indexed before a specific date" },
-  { value: "ext", label: "ext:", description: "Files with a specific extension" },
-  { value: "allintext", label: "allintext:", description: "Pages containing all specified terms" },
   { value: "allinurl", label: "allinurl:", description: "URLs containing all specified terms" },
+  { value: "intitle", label: "intitle:", description: "Pages with a specific word in the title" },
   { value: "allintitle", label: "allintitle:", description: "Titles containing all specified terms" },
+  { value: "filetype", label: "filetype:", description: "Files of a specific type" },
+  { value: "ext", label: "ext:", description: "Files with a specific extension" },
+  { value: "indexof", label: "index of /", description: "Directory listings" },
+  { value: "intext", label: "intext:", description: "Pages containing specific text" },
+  { value: "allintext", label: "allintext:", description: "Pages containing all specified terms" },
+  { value: "inurl_login", label: "inurl:login", description: "URLs containing 'login'" },
+  { value: "intitle_login", label: "intitle:login", description: "Pages with 'login' in the title" },
+  { value: "inurl_wp_admin", label: "inurl:wp-admin", description: "WordPress admin pages" },
+  { value: "inurl_register", label: "inurl:register", description: "Registration pages" },
+  { value: "inurl_config", label: "inurl:config", description: "Configuration files" },
+  { value: "filetype_env", label: "filetype:env", description: "Environment configuration files" },
+  { value: "filetype_sql", label: "filetype:sql", description: "SQL database files" },
+  { value: "filetype_log", label: "filetype:log", description: "Log files" },
+  { value: "inurl_phpmyadmin", label: "inurl:phpmyadmin", description: "phpMyAdmin installations" },
+  { value: "inurl_webcam", label: "inurl:webcam", description: "Webcam pages" },
+  { value: "inurl_8080", label: "inurl:8080", description: "Pages on port 8080" },
+  { value: "index_admin", label: 'intitle:"Index of /admin"', description: "Admin directory listings" },
+  { value: "inurl_ftp", label: "inurl:ftp", description: "FTP related pages" },
+  { value: "apache_status", label: 'intext:"Apache Status"', description: "Apache server status pages" },
 ];
 
 interface OperatorQuery {
@@ -158,7 +173,7 @@ export function GoogleDorker() {
             
             <div className="space-y-4">
               {operatorQueries.map((query, index) => (
-                <div key={query.id}>
+                <div key={query.id} className="pb-2">
                   <div className="flex flex-col sm:flex-row gap-2">
                     <div className="flex-shrink-0 w-full sm:w-auto">
                       <Select 
@@ -168,7 +183,7 @@ export function GoogleDorker() {
                         <SelectTrigger className="w-full sm:w-[180px]">
                           <SelectValue placeholder="Select operator" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-[300px]">
                           {dorkOperators.map((operator) => (
                             <SelectItem key={operator.value} value={operator.value}>
                               <div className="flex flex-col">
@@ -202,7 +217,7 @@ export function GoogleDorker() {
                     </div>
                   </div>
                   {index < operatorQueries.length - 1 && (
-                    <Separator className="my-4 sm:hidden" />
+                    <Separator className="my-4" />
                   )}
                 </div>
               ))}
@@ -265,7 +280,7 @@ export function GoogleDorker() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {dorkOperators.slice(0, 8).map((operator) => (
+            {dorkOperators.map((operator) => (
               <div key={operator.value} className="p-3 border rounded-md">
                 <p className="font-semibold">{operator.label}</p>
                 <p className="text-sm text-muted-foreground">{operator.description}</p>

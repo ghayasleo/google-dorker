@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
 
-## Project info
+# Google Dorker
 
-**URL**: https://lovable.dev/projects/eb6159cf-3040-4ea6-8ccf-0019012211ac
+A powerful tool designed to help users craft advanced Google search queries using Google Dorking techniques. Google Dorking allows you to find specific information that might not be readily available through simple searches.
 
-## How can I edit this code?
+## Project Overview
 
-There are several ways of editing your application.
+**Live Demo**: [Google Dorker](https://lovable.dev/projects/eb6159cf-3040-4ea6-8ccf-0019012211ac)
 
-**Use Lovable**
+**Repository**: [GitHub - ghayasleo/google-dorker](https://github.com/ghayasleo/google-dorker)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/eb6159cf-3040-4ea6-8ccf-0019012211ac) and start prompting.
+**Created by**: [Ghayas](https://github.com/ghayasleo)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
 
-**Use your preferred IDE**
+- Advanced query builder with support for multiple operators
+- Comprehensive list of Google Dork operators
+- Easy-to-use interface for both beginners and advanced users
+- Copy queries directly to clipboard
+- Launch searches directly in Google
+- Responsive design for desktop and mobile
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Included Operators
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The application supports numerous Google Dork operators including:
 
-Follow these steps:
+- Basic operators: `""`, `OR`, `AND`, `-`, `*`
+- Site-specific searches: `site:`
+- URL-based searches: `inurl:`, `allinurl:`
+- Title-based searches: `intitle:`, `allintitle:`
+- File-type searches: `filetype:`, `ext:`
+- Directory listing searches: `index of /`
+- Content-based searches: `intext:`, `allintext:`
+- Specialized searches like `inurl:login`, `intitle:login`, `inurl:wp-admin`, etc.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Responsible Use
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Google Dorking is a powerful technique that should be used responsibly and ethically. This tool is intended for:
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Security professionals conducting security assessments
+- Web administrators verifying their site's visibility
+- Researchers looking for specific information
+- Educational purposes to learn about search techniques
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Do not use this tool for any illegal activities or to access information you don't have permission to view.
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technology Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
 - React
-- shadcn-ui
+- TypeScript
+- Vite
 - Tailwind CSS
+- shadcn/ui components
+- Deployed with Lovable
 
-## How can I deploy this project?
+## Local Development
 
-Simply open [Lovable](https://lovable.dev/projects/eb6159cf-3040-4ea6-8ccf-0019012211ac) and click on Share -> Publish.
+To run this project locally:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Clone the repository
+git clone https://github.com/ghayasleo/google-dorker.git
 
-Yes it is!
+# Navigate to the project directory
+cd google-dorker
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Install dependencies
+npm install
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Start the development server
+npm run dev
+```
+
+## Contributions
+
+Contributions are welcome! Feel free to submit issues or pull requests to improve the tool.
+
+## License
+
+This project is open source and available for anyone to use and modify.
+
+---
+
+Created with ❤️ by [Ghayas](https://github.com/ghayasleo)

@@ -16,8 +16,9 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => window.open("https://github.com", "_blank")}
+            onClick={() => window.open("https://github.com/ghayasleo/google-dorker", "_blank")}
             aria-label="GitHub repository"
+            title="GitHub Repository"
           >
             <Github className="h-5 w-5" />
           </Button>
