@@ -22,35 +22,35 @@ import {
 } from "@/components/ui/card";
 
 const dorkOperators = [
-  { value: "empty", label: '""', description: "Empty string search" },
-  { value: "or", label: "OR", description: "Search for either term" },
-  { value: "and", label: "AND", description: "Search for both terms" },
-  { value: "exclude", label: "-", description: "Exclude a term from results" },
-  { value: "wildcard", label: "*", description: "Wildcard character for any text" },
-  { value: "site", label: "site:", description: "Search within a specific website" },
-  { value: "inurl", label: "inurl:", description: "Pages with a specific word in the URL" },
-  { value: "allinurl", label: "allinurl:", description: "URLs containing all specified terms" },
-  { value: "intitle", label: "intitle:", description: "Pages with a specific word in the title" },
-  { value: "allintitle", label: "allintitle:", description: "Titles containing all specified terms" },
-  { value: "filetype", label: "filetype:", description: "Files of a specific type" },
-  { value: "ext", label: "ext:", description: "Files with a specific extension" },
-  { value: "indexof", label: "index of /", description: "Directory listings" },
-  { value: "intext", label: "intext:", description: "Pages containing specific text" },
-  { value: "allintext", label: "allintext:", description: "Pages containing all specified terms" },
-  { value: "inurl_login", label: "inurl:login", description: "URLs containing 'login'" },
-  { value: "intitle_login", label: "intitle:login", description: "Pages with 'login' in the title" },
-  { value: "inurl_wp_admin", label: "inurl:wp-admin", description: "WordPress admin pages" },
-  { value: "inurl_register", label: "inurl:register", description: "Registration pages" },
-  { value: "inurl_config", label: "inurl:config", description: "Configuration files" },
-  { value: "filetype_env", label: "filetype:env", description: "Environment configuration files" },
-  { value: "filetype_sql", label: "filetype:sql", description: "SQL database files" },
-  { value: "filetype_log", label: "filetype:log", description: "Log files" },
-  { value: "inurl_phpmyadmin", label: "inurl:phpmyadmin", description: "phpMyAdmin installations" },
-  { value: "inurl_webcam", label: "inurl:webcam", description: "Webcam pages" },
-  { value: "inurl_8080", label: "inurl:8080", description: "Pages on port 8080" },
-  { value: "index_admin", label: 'intitle:"Index of /admin"', description: "Admin directory listings" },
-  { value: "inurl_ftp", label: "inurl:ftp", description: "FTP related pages" },
-  { value: "apache_status", label: 'intext:"Apache Status"', description: "Apache server status pages" },
+  { value: "empty", label: '""', description: "Empty string search", requiresValue: true, valueFormat: "Inside quotes" },
+  { value: "or", label: "OR", description: "Search for either term", requiresValue: false, valueFormat: "No input needed" },
+  { value: "and", label: "AND", description: "Search for both terms", requiresValue: false, valueFormat: "No input needed" },
+  { value: "exclude", label: "-", description: "Exclude a term from results", requiresValue: true, valueFormat: "After minus sign" },
+  { value: "wildcard", label: "*", description: "Wildcard character for any text", requiresValue: false, valueFormat: "No input needed" },
+  { value: "site", label: "site:", description: "Search within a specific website", requiresValue: true, valueFormat: "After colon" },
+  { value: "inurl", label: "inurl:", description: "Pages with a specific word in the URL", requiresValue: true, valueFormat: "After colon" },
+  { value: "allinurl", label: "allinurl:", description: "URLs containing all specified terms", requiresValue: true, valueFormat: "After colon" },
+  { value: "intitle", label: "intitle:", description: "Pages with a specific word in the title", requiresValue: true, valueFormat: "After colon" },
+  { value: "allintitle", label: "allintitle:", description: "Titles containing all specified terms", requiresValue: true, valueFormat: "After colon" },
+  { value: "filetype", label: "filetype:", description: "Files of a specific type", requiresValue: true, valueFormat: "After colon" },
+  { value: "ext", label: "ext:", description: "Files with a specific extension", requiresValue: true, valueFormat: "After colon" },
+  { value: "indexof", label: "index of", description: "Directory listings", requiresValue: true, valueFormat: "After phrase" },
+  { value: "intext", label: "intext:", description: "Pages containing specific text", requiresValue: true, valueFormat: "After colon" },
+  { value: "allintext", label: "allintext:", description: "Pages containing all specified terms", requiresValue: true, valueFormat: "After colon" },
+  { value: "inurl_login", label: "inurl:login", description: "URLs containing 'login'", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "intitle_login", label: "intitle:login", description: "Pages with 'login' in the title", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_wp_admin", label: "inurl:wp-admin", description: "WordPress admin pages", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_register", label: "inurl:register", description: "Registration pages", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_config", label: "inurl:config", description: "Configuration files", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "filetype_env", label: "filetype:env", description: "Environment configuration files", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "filetype_sql", label: "filetype:sql", description: "SQL database files", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "filetype_log", label: "filetype:log", description: "Log files", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_phpmyadmin", label: "inurl:phpmyadmin", description: "phpMyAdmin installations", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_webcam", label: "inurl:webcam", description: "Webcam pages", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_8080", label: "inurl:8080", description: "Pages on port 8080", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "index_admin", label: 'intitle:"Index of /admin"', description: "Admin directory listings", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "inurl_ftp", label: "inurl:ftp", description: "FTP related pages", requiresValue: false, valueFormat: "Predefined pattern" },
+  { value: "apache_status", label: 'intext:"Apache Status"', description: "Apache server status pages", requiresValue: false, valueFormat: "Predefined pattern" },
 ];
 
 interface OperatorQuery {
@@ -96,7 +96,7 @@ export function GoogleDorker() {
 
   const handleGenerateQuery = () => {
     const hasValidOperator = operatorQueries.some(
-      query => query.operator && query.value
+      query => query.operator
     );
 
     if (!hasValidOperator && !keywords) {
@@ -109,11 +109,36 @@ export function GoogleDorker() {
     }
     
     const operatorParts = operatorQueries
-      .filter(query => query.operator && query.value)
+      .filter(query => query.operator)
       .map(query => {
         const operator = dorkOperators.find(op => op.value === query.operator);
-        return `${operator?.label || ""}${query.value}`;
-      });
+        
+        if (!operator) return "";
+        
+        // For operators that don't require a value, just return the label
+        if (!operator.requiresValue) {
+          return operator.label;
+        }
+        
+        // For operators that require a value, combine with the user input
+        if (query.value.trim() === "") {
+          return ""; // Skip if no value is provided for operators that need one
+        }
+        
+        // Special formatting for quotes
+        if (operator.value === "empty") {
+          return `"${query.value}"`;
+        }
+        
+        // Special formatting for exclude
+        if (operator.value === "exclude") {
+          return `-${query.value}`;
+        }
+        
+        // Default formatting for most operators (append value)
+        return `${operator.label}${query.value}`;
+      })
+      .filter(part => part !== ""); // Remove any empty parts
     
     const queryParts = keywords ? [keywords, ...operatorParts] : operatorParts;
     const query = queryParts.join(" ");
@@ -172,39 +197,48 @@ export function GoogleDorker() {
             </div>
             
             <div className="space-y-4">
-              {operatorQueries.map((query, index) => (
-                <div key={query.id} className="pb-2">
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <div className="flex-shrink-0 w-full sm:w-auto">
-                      <Select 
-                        value={query.operator} 
-                        onValueChange={(value) => updateOperatorQuery(query.id, 'operator', value)}
-                      >
-                        <SelectTrigger className="w-full sm:w-[180px]">
-                          <SelectValue placeholder="Select operator" />
-                        </SelectTrigger>
-                        <SelectContent className="max-h-[300px]">
-                          {dorkOperators.map((operator) => (
-                            <SelectItem key={operator.value} value={operator.value}>
-                              <div className="flex flex-col">
-                                <span>{operator.label}</span>
-                                <span className="text-xs text-muted-foreground">{operator.description}</span>
-                              </div>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="flex-1 flex gap-2">
-                      <Input
-                        placeholder="Enter value..."
-                        value={query.value}
-                        onChange={(e) => updateOperatorQuery(query.id, 'value', e.target.value)}
-                        className="flex-1"
-                      />
+              {operatorQueries.map((query, index) => {
+                const selectedOperator = dorkOperators.find(op => op.value === query.operator);
+                
+                return (
+                  <div key={query.id} className="pb-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex-shrink-0 w-full sm:w-auto">
+                        <Select 
+                          value={query.operator} 
+                          onValueChange={(value) => updateOperatorQuery(query.id, 'operator', value)}
+                        >
+                          <SelectTrigger className="w-full sm:w-[180px]">
+                            <SelectValue placeholder="Select operator" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-[300px]">
+                            {dorkOperators.map((operator) => (
+                              <SelectItem key={operator.value} value={operator.value}>
+                                <div className="flex flex-col">
+                                  <span>{operator.label}</span>
+                                  <span className="text-xs text-muted-foreground">{operator.description}</span>
+                                  <span className="text-xs text-muted-foreground">{operator.valueFormat}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
                       
-                      {operatorQueries.length > 1 && (
+                      <div className="flex-1 flex gap-2">
+                        {selectedOperator?.requiresValue ? (
+                          <Input
+                            placeholder={`Enter value${selectedOperator?.valueFormat ? ` (${selectedOperator.valueFormat})` : ''}...`}
+                            value={query.value}
+                            onChange={(e) => updateOperatorQuery(query.id, 'value', e.target.value)}
+                            className="flex-1"
+                          />
+                        ) : (
+                          <div className="flex-1 flex items-center px-3 h-10 bg-muted/30 rounded-md text-sm text-muted-foreground">
+                            {selectedOperator ? `No input needed for ${selectedOperator.label}` : 'Select an operator first'}
+                          </div>
+                        )}
+                        
                         <Button 
                           variant="ghost" 
                           size="icon"
@@ -213,14 +247,21 @@ export function GoogleDorker() {
                         >
                           <X className="h-4 w-4" />
                         </Button>
-                      )}
+                      </div>
                     </div>
+                    
+                    {index < operatorQueries.length - 1 && (
+                      <div className="my-4 py-2 px-4 bg-muted/20 rounded-md text-sm text-center text-muted-foreground block sm:hidden">
+                        Operator #{index + 2}
+                      </div>
+                    )}
+                    
+                    {index < operatorQueries.length - 1 && (
+                      <Separator className="my-4 hidden sm:block" />
+                    )}
                   </div>
-                  {index < operatorQueries.length - 1 && (
-                    <Separator className="my-4" />
-                  )}
-                </div>
-              ))}
+                );
+              })}
               
               <Button 
                 variant="outline" 
@@ -284,6 +325,11 @@ export function GoogleDorker() {
               <div key={operator.value} className="p-3 border rounded-md">
                 <p className="font-semibold">{operator.label}</p>
                 <p className="text-sm text-muted-foreground">{operator.description}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {operator.requiresValue 
+                    ? `Requires input (${operator.valueFormat})` 
+                    : "No additional input required"}
+                </p>
               </div>
             ))}
           </div>
