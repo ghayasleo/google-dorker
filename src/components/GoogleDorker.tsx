@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Copy, Search, ExternalLink, Plus, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -93,6 +94,26 @@ export function GoogleDorker() {
     );
   };
 
+  const validateOperatorInputs = () => {
+    const invalidOperators = operatorQueries.filter(query => {
+      if (!query.operator) return false; // Skip empty operators
+      
+      const operator = dorkOperators.find(op => op.value === query.operator);
+      return operator?.requiresValue && !query.value.trim();
+    });
+    
+    if (invalidOperators.length > 0) {
+      toast({
+        title: "Missing input value",
+        description: "Please provide a value for all operators that require one",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    return true;
+  };
+
   const handleGenerateQuery = () => {
     const hasValidOperator = operatorQueries.some(
       query => query.operator
@@ -104,6 +125,10 @@ export function GoogleDorker() {
         description: "Please enter keywords or at least one complete operator query",
         variant: "destructive",
       });
+      return;
+    }
+    
+    if (!validateOperatorInputs()) {
       return;
     }
     
@@ -147,7 +172,18 @@ export function GoogleDorker() {
 
   const handleSearch = () => {
     if (!generatedQuery) {
+      if (!validateOperatorInputs()) {
+        return;
+      }
+      
       handleGenerateQuery();
+      
+      // Give a short timeout to allow query generation
+      setTimeout(() => {
+        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(keywords || "")}`;
+        window.open(googleSearchUrl, "_blank");
+      }, 100);
+      
       return;
     }
     
