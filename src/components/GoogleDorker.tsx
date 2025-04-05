@@ -342,9 +342,9 @@ export function GoogleDorker() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {dorkOperators.map((operator) => (
               <div key={operator.value} className="p-3 border rounded-md">
-                <p className="font-semibold">{operator.label}</p>
-                <p className="text-sm text-muted-foreground">{operator.description}</p>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="font-semibold text-left">{operator.label}</p>
+                <p className="text-sm text-muted-foreground text-left">{operator.description}</p>
+                <p className="text-xs text-muted-foreground mt-1 text-left">
                   {operator.requiresValue 
                     ? "Requires input" 
                     : "No additional input required"}
