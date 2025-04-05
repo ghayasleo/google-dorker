@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Copy, Search, ExternalLink, Plus, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -37,20 +36,6 @@ const dorkOperators = [
   { value: "indexof", label: "index of", description: "Directory listings", requiresValue: true, valueFormat: "" },
   { value: "intext", label: "intext:", description: "Pages containing specific text", requiresValue: true, valueFormat: "" },
   { value: "allintext", label: "allintext:", description: "Pages containing all specified terms", requiresValue: true, valueFormat: "" },
-  { value: "inurl_login", label: "inurl:login", description: "URLs containing 'login'", requiresValue: false, valueFormat: "" },
-  { value: "intitle_login", label: "intitle:login", description: "Pages with 'login' in the title", requiresValue: false, valueFormat: "" },
-  { value: "inurl_wp_admin", label: "inurl:wp-admin", description: "WordPress admin pages", requiresValue: false, valueFormat: "" },
-  { value: "inurl_register", label: "inurl:register", description: "Registration pages", requiresValue: false, valueFormat: "" },
-  { value: "inurl_config", label: "inurl:config", description: "Configuration files", requiresValue: false, valueFormat: "" },
-  { value: "filetype_env", label: "filetype:env", description: "Environment configuration files", requiresValue: false, valueFormat: "" },
-  { value: "filetype_sql", label: "filetype:sql", description: "SQL database files", requiresValue: false, valueFormat: "" },
-  { value: "filetype_log", label: "filetype:log", description: "Log files", requiresValue: false, valueFormat: "" },
-  { value: "inurl_phpmyadmin", label: "inurl:phpmyadmin", description: "phpMyAdmin installations", requiresValue: false, valueFormat: "" },
-  { value: "inurl_webcam", label: "inurl:webcam", description: "Webcam pages", requiresValue: false, valueFormat: "" },
-  { value: "inurl_8080", label: "inurl:8080", description: "Pages on port 8080", requiresValue: false, valueFormat: "" },
-  { value: "index_admin", label: 'intitle:"Index of /admin"', description: "Admin directory listings", requiresValue: false, valueFormat: "" },
-  { value: "inurl_ftp", label: "inurl:ftp", description: "FTP related pages", requiresValue: false, valueFormat: "" },
-  { value: "apache_status", label: 'intext:"Apache Status"', description: "Apache server status pages", requiresValue: false, valueFormat: "" },
 ];
 
 interface OperatorQuery {
